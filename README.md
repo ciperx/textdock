@@ -23,6 +23,14 @@ wants when they are paying $0.01 for a transformation rather than for prose.
 Each price is per call. Unpaid calls answer `402` with the x402 terms for `network: base`, asset
 USDC `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`, paid straight to the payout address.
 
+## Listed on FiatDock
+
+The MCP endpoint is published in the FiatDock marketplace, free to list, 100% of the price to the
+payout wallet: `svc_237f4db1-ead6-4a3b-b35a-bd2bee813d18`
+(https://fiatdock.com/service/svc_237f4db1-ead6-4a3b-b35a-bd2bee813d18). The handshake
+(`initialize`, `tools/list`, `ping`) answers 200 so marketplace probes can read the tool schemas;
+only `tools/call` is metered.
+
 ## Install and run
 
 ```bash
