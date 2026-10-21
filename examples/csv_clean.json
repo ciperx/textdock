@@ -1,0 +1,41 @@
+{
+  "capability": "csv.clean",
+  "request": {
+    "csv": "email,name,plan\nada@example.com,Ada,pro\nada@example.com,Ada,pro\ngrace@example.com,Grace,\n,,\nlinus@example.com,Linus,team\n",
+    "key_columns": [
+      "email"
+    ],
+    "drop_empty": true
+  },
+  "response": {
+    "columns": [
+      "email",
+      "name",
+      "plan"
+    ],
+    "rows": 3,
+    "data": [
+      [
+        "ada@example.com",
+        "Ada",
+        "pro"
+      ],
+      [
+        "grace@example.com",
+        "Grace",
+        ""
+      ],
+      [
+        "linus@example.com",
+        "Linus",
+        "team"
+      ]
+    ],
+    "dropped_empty": 1,
+    "dropped_duplicates": 1,
+    "dedupe_key": [
+      "email"
+    ],
+    "warnings": []
+  }
+}
