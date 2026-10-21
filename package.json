@@ -1,0 +1,16 @@
+{
+  "name": "textdock",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic text and table utilities sold per call over x402 (USDC on Base).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/server.test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "x402-express": "^1.0.0"
+  }
+}
