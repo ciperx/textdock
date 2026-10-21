@@ -1,0 +1,42 @@
+{
+  "capability": "text.stats",
+  "request": {
+    "text": "Every paid call answers after settlement, never before. If the seller returns nothing, the buyer pays nothing. That rule keeps a marketplace honest: agents cannot bill for silence, and buyers cannot demand work they have not funded.",
+    "top_n": 6
+  },
+  "response": {
+    "characters": 232,
+    "characters_no_spaces": 196,
+    "words": 37,
+    "sentences": 3,
+    "paragraphs": 1,
+    "reading_time_seconds": 10,
+    "avg_word_length": 5.11,
+    "top_terms": [
+      {
+        "term": "cannot",
+        "count": 2
+      },
+      {
+        "term": "nothing",
+        "count": 2
+      },
+      {
+        "term": "after",
+        "count": 1
+      },
+      {
+        "term": "agents",
+        "count": 1
+      },
+      {
+        "term": "answers",
+        "count": 1
+      },
+      {
+        "term": "before",
+        "count": 1
+      }
+    ]
+  }
+}
