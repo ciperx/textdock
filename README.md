@@ -23,6 +23,19 @@ wants when they are paying $0.01 for a transformation rather than for prose.
 Each price is per call. Unpaid calls answer `402` with the x402 terms for `network: base`, asset
 USDC `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`, paid straight to the payout address.
 
+## Payment rail (x402 v2)
+
+The paywall is x402 **v2** on `eip155:8453` (USDC `0x8335…2913`), facilitator
+`https://facilitator.daydreams.systems` — the only public facilitator we found that settles Base
+mainnet (x402.org is testnet-only, facilitator.x402.rs has no Base mainnet). Each 402 carries a
+`PAYMENT-REQUIRED` header with `extensions.bazaar` input/output examples, and the origin is
+registered on **x402scan** (`register-origin` returns `registered: 4`). Discovery documents:
+`/openapi.json` (x402 first) and `/.well-known/x402`.
+
+`siwx_register.py` re-registers after a deploy: it takes the SIWX challenge, signs the EIP-4361
+message with the payout wallet's key, and sends `base64(JSON(proof))` in `SIGN-IN-WITH-X`
+(raw JSON is rejected as `siwx_malformed`).
+
 ## Listed on FiatDock
 
 The MCP endpoint is published in the FiatDock marketplace, free to list, 100% of the price to the
