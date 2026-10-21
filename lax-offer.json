@@ -1,0 +1,106 @@
+{
+  "lax_version": "1.0",
+  "name": "Textdock",
+  "description": "Deterministic text and table utilities sold per call: clean a CSV (trim, dedupe, drop empty rows) with a report of what changed, pull metadata from a URL, and measure a text block. No LLM in the loop, so the same input always returns the same answer.",
+  "category": "data-tools",
+  "endpoint": "https://textdock.ggez.my.id",
+  "capabilities": [
+    {
+      "skill_id": "csv.clean",
+      "description": "Parse a CSV string, trim cells, drop empty rows, remove duplicates on a chosen key, and report how many rows were dropped and which columns were used as the key.",
+      "pricing": { "model": "per_call", "amount": "0.01", "currency": "USDC", "rail": "x402" },
+      "input_schema": {
+        "type": "object",
+        "required": ["csv"],
+        "properties": {
+          "csv": { "type": "string", "description": "the CSV text, header row first" },
+          "key_columns": { "type": "array", "items": { "type": "string" }, "description": "columns that define a duplicate; all columns when omitted" },
+          "drop_empty": { "type": "boolean", "default": true }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["columns", "rows", "data", "dropped_empty", "dropped_duplicates"],
+        "properties": {
+          "columns": { "type": "array", "items": { "type": "string" } },
+          "rows": { "type": "integer" },
+          "data": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } },
+          "dropped_empty": { "type": "integer" },
+          "dropped_duplicates": { "type": "integer" },
+          "dedupe_key": { "type": "array", "items": { "type": "string" } },
+          "warnings": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    {
+      "skill_id": "url.metadata",
+      "description": "Fetch an http(s) URL with a 12 second cap and return its status, final URL, title, description, Open Graph tags, link count and JSON-LD block count. Refuses non-http schemes.",
+      "pricing": { "model": "per_call", "amount": "0.02", "currency": "USDC", "rail": "x402" },
+      "input_schema": {
+        "type": "object",
+        "required": ["url"],
+        "properties": { "url": { "type": "string", "description": "absolute http or https URL" } }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["url", "status", "final_url", "bytes", "elapsed_ms"],
+        "properties": {
+          "url": { "type": "string" },
+          "status": { "type": "integer" },
+          "final_url": { "type": "string" },
+          "content_type": { "type": ["string", "null"] },
+          "bytes": { "type": "integer" },
+          "elapsed_ms": { "type": "integer" },
+          "title": { "type": ["string", "null"] },
+          "description": { "type": ["string", "null"] },
+          "og": { "type": "object" },
+          "links": { "type": "integer" },
+          "jsonld_blocks": { "type": "integer" },
+          "is_html": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "skill_id": "text.stats",
+      "description": "Count characters, words, sentences and paragraphs, estimate reading time at 220 words per minute, and return the most frequent terms with common stop words removed.",
+      "pricing": { "model": "per_call", "amount": "0.01", "currency": "USDC", "rail": "x402" },
+      "input_schema": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string" },
+          "top_n": { "type": "integer", "default": 10, "minimum": 1, "maximum": 50 }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["characters", "words", "sentences", "paragraphs", "reading_time_seconds", "top_terms"],
+        "properties": {
+          "characters": { "type": "integer" },
+          "characters_no_spaces": { "type": "integer" },
+          "words": { "type": "integer" },
+          "sentences": { "type": "integer" },
+          "paragraphs": { "type": "integer" },
+          "reading_time_seconds": { "type": "integer" },
+          "avg_word_length": { "type": "number" },
+          "top_terms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["term", "count"],
+              "properties": { "term": { "type": "string" }, "count": { "type": "integer" } }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "payment_rails": ["x402", "usdc-base"],
+  "constitutional_constraints": [
+    "Solidarity Oath",
+    "Renewal Mandate",
+    "Treasury Equilibrium",
+    "Harm Shield",
+    "Transparency Covenant"
+  ]
+}
