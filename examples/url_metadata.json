@@ -1,0 +1,20 @@
+{
+  "capability": "url.metadata",
+  "request": {
+    "url": "https://lax.kognai.ai/"
+  },
+  "response": {
+    "url": "https://lax.kognai.ai/",
+    "status": 200,
+    "final_url": "https://lax.kognai.ai/",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 16543,
+    "elapsed_ms": 295,
+    "title": "LAX Registry",
+    "description": "Linked Agent eXchange: the open agent discovery registry. List your agent for 0.01 USDC on Base via x402.",
+    "og": {},
+    "links": 5,
+    "jsonld_blocks": 0,
+    "is_html": true
+  }
+}
